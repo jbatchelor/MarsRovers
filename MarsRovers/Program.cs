@@ -25,7 +25,7 @@ namespace MarsRovers
                 SearchGrid grid = new SearchGrid(xWidth, yWidth);
                 // set up a loop that is only broken if the rover input
                 // meets certain conditions
-                while (1 != 0)
+                while (true)
                 {
                     if (CheckRoverInput(grid) == false)
                     {
@@ -45,6 +45,10 @@ namespace MarsRovers
                 return false;
             }
             string[] arrRoverCoords = roverStart.Split(' ');
+            if (arrRoverCoords.Length != 3)
+            {
+                return false;
+            }
             // create the rover
             Rover rover = new Rover(grid, arrRoverCoords);
 
