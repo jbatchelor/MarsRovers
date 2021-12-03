@@ -11,17 +11,20 @@ namespace MarsRovers
         static void Main()
         {
             Console.WriteLine("Enter grid coordinates");
-            string? gridCoords = Console.ReadLine();
-            string[]? arrGridCoords = gridCoords?.Split(' ');
+            string[]? arrGridCoords = Console.ReadLine()?.Split(' ');
             if (arrGridCoords != null) {
-                int xWidth, yWidth;
-                bool xValid = int.TryParse(arrGridCoords[0], out xWidth);
-                bool yValid = int.TryParse(arrGridCoords[1], out yWidth);
+                bool xValid = int.TryParse(arrGridCoords[0], out int xWidth);
+                bool yValid = int.TryParse(arrGridCoords[1], out int yWidth);
+                // if improper chars are used for the grid coords
+                // shut down the app
                 if (!xValid || !yValid)
                 {
                     return;
                 }
+                // otherwise we are safe to create our SearchGrid
                 SearchGrid grid = new SearchGrid(xWidth, yWidth);
+                // set up a loop that is only broken if the rover input
+                // meets certain conditions
                 while (1 != 0)
                 {
                     if (CheckRoverInput(grid) == false)
@@ -57,7 +60,7 @@ namespace MarsRovers
             { 
                 return false; 
             } else {
-                rover.RecieveCommands(commands);
+                rover.ReceiveCommands(commands);
                 Console.WriteLine(rover.GetLocation);
                 return true;
             }
